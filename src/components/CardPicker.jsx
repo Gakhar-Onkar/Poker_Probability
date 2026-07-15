@@ -1,4 +1,4 @@
-const RANKS = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2'];
+const RANKS = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'];
 const SUITS = [
   { symbol: '♠', name: 's', color: 'text-gray-900', gridColor: 'text-white' },
   { symbol: '♥', name: 'h', color: 'text-red-500', gridColor: 'text-red-400' },
@@ -32,13 +32,14 @@ function CardPicker({ label, selected, onChange, usedCards, maxCards = 52 }) {
                         const rank = card.slice(0, -1);
                         const suitName = card.slice(-1);
                         const suit = SUITS.find(s => s.name === suitName);
+                        const displayRank = rank === 'T' ? '10' : rank;
                         return (
                             <span
                                 key={card}
                                 onClick={() => toggleCard(card)}
                                 className={`bg-white font-bold px-3 py-1 rounded-lg cursor-pointer hover:bg-red-200 transition text-lg ${suit.color}`}
                             >
-                                {rank}{suit.symbol}
+                                {displayRank}{suit.symbol}
                             </span>
                         );
                     })
@@ -61,7 +62,7 @@ function CardPicker({ label, selected, onChange, usedCards, maxCards = 52 }) {
                     <tbody>
                         {RANKS.map(rank => (
                             <tr key={rank}>
-                                <td className="text-gray-400 text-sm font-bold pr-2">{rank}</td>
+                                <td className="text-gray-400 text-sm font-bold pr-2">{rank === 'T' ? '10' : rank}</td>
                                 {SUITS.map(suit => {
                                     const card = rank + suit.name;
                                     const isSelected = selected.includes(card);
@@ -82,7 +83,7 @@ function CardPicker({ label, selected, onChange, usedCards, maxCards = 52 }) {
                                                     }
                         `}
                                             >
-                                                {rank}{suit.symbol}
+                                                {rank === 'T' ? '10' : rank}{suit.symbol}
                                             </button>
                                         </td>
                                     );

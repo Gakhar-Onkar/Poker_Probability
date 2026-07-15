@@ -3,6 +3,7 @@ import CardPicker from './components/CardPicker';
 import PlayerSelector from './components/PlayerSelector';
 import Results from './components/Results';
 import CameraDetector from './components/CameraDetector';
+import CoachPanel from './components/CoachPanel';
 
 function App() {
   const [holeCards, setHoleCards] = useState([]);
@@ -179,8 +180,15 @@ function App() {
               🔄 Reset
             </button>
           </div>
-
+          
+          
           <Results results={results} isCalculating={isCalculating} />
+          <CoachPanel
+            holeCards={holeCards}
+            communityCards={communityCards}
+            playerCount={playerCount}
+            results={results}
+          />
         </div>
 
       </div>
