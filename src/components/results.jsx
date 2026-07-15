@@ -62,6 +62,7 @@ function Results({ results, isCalculating }) {
         </div>
       </div>
     </div>
+    
   );
 }
 
